@@ -21,7 +21,6 @@ import Project from './Project'
  */
 
 class FilterProjects extends Component {
-
   constructor(props) {
     super(props);
     this.selected = 'project-type--selected',
@@ -64,7 +63,6 @@ class FilterProjects extends Component {
     return (
       <section>
           <h4>Projects</h4>
-
           <div className="project-types-list">
             <span onClick={()=>this.selectionHandler('all')} className={`project-type project-type--all ${this.state.allSelectedClassName}`}>
               All
@@ -83,16 +81,7 @@ class FilterProjects extends Component {
             {/* Step (1) --- .map() the projectData to JSX  */
               projectData
               .filter(e=>{
-                switch(this.state.filterCriteria){
-                  case 'solo':
-                    if(e.solo) return e
-                    break;
-                  case 'team':
-                    if(!e.solo) return e
-                    break;
-                  default:
-                    return e
-                }              
+                return (this.state.filterCriteria === "all")? e : (this.state.filterCriteria === "solo") ? e.solo : !e.solo
               })
               .map((e,i)=>{
                 return <Project key={i} project={e} />
