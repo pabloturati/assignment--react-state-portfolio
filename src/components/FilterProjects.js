@@ -18,9 +18,9 @@ class FilterProjects extends Component {
     const selectedClassName = "project-type--selected";
 
     this.setState({
-      allSelectedClassName: filter === "all" ? selectedClassName : "",,
+      allSelectedClassName: filter === "all" ? selectedClassName : "",
       teamSelectedClassName: filter === "team" ? selectedClassName : "",
-      soloSelectedClassName: filter === "solo" ? selectedClassName : "",,
+      soloSelectedClassName: filter === "solo" ? selectedClassName : "",
       filterCriteria: filter
     });
   }
@@ -61,19 +61,17 @@ class FilterProjects extends Component {
         </div>
 
         <div className="projects-list">
-          {
-            projectData
-              .filter(e => {
-                return this.state.filterCriteria === "all"
-                  ? e
-                  : this.state.filterCriteria === "solo"
-                    ? e.solo
-                    : !e.solo;
-              })
-              .map((e, i) => {
-                return <Project key={i} project={e} />;
-              })
-          }
+          {projectData
+            .filter(e => {
+              return this.state.filterCriteria === "all"
+                ? e
+                : this.state.filterCriteria === "solo"
+                  ? e.solo
+                  : !e.solo;
+            })
+            .map((e, i) => {
+              return <Project key={i} project={e} />;
+            })}
         </div>
       </section>
     );
